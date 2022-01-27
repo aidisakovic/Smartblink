@@ -18,4 +18,4 @@ Raspberry-Zusatzboards wahlweise gleichzeitig blinken lässt oder als Lauflicht 
    zwischen Blinker und Lauflicht. Nach dem  Schließen des Programmfensters sollen alle LEDs ausgeschaltet sein.
 7. Wenn alles wunschgemäß funktioniert, lade den aktualisierten Quellcode wieder auf deinen Account (git-Ablauf wie gelernt).
 
-## Dein Name: 
+## Dein Name: Aid Isakovic
