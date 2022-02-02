@@ -1,6 +1,6 @@
 #include "gui.h"
 
-Gui::Gui(QWidget parent) :
+Gui::Gui(QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
@@ -18,18 +18,20 @@ void Gui::on_speedSlider_valueChanged(int value)
 
 void Gui::on_blinkButton_clicked()
 {
-    // Blinken beginnen
     m_blinkrun = 1;
 }
 
 void Gui::on_lauflichtButton_clicked()
 {
     m_blinkrun = 0;
-    count = 1;
+    count = 0;
+    is_second_run = 0;
+    is_first_run = 1;
 }
 
 void Gui::toggle()
 {
+
     m_state = !m_state;
     if(m_blinkrun == 1)
     {
@@ -43,13 +45,30 @@ void Gui::toggle()
     }
     if(m_blinkrun == 0)
     {
-        m_leds->set(count);
-            if(count < 8)
-            {
-                count = count2;
+        if(count == 0)
+        {
+            if(is_first_run == 1){
+                count = 0;
+                is_first_run = 0;
+            }
+            else{
+                count += 6;
+            }
+        }
+        else if(count == 6){
+            if(is_second_run == 1){
+                count -= 6;
+                is_second_run = 0;
             }
             else {
-                count = 1;
+                count += 9;
+                is_second_run = 1;
             }
+        }
+        else if(count == 15){
+            count -= 9;
+        }
+
+        m_leds->set(count);
     }
 }

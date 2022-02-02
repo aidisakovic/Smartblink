@@ -12,7 +12,7 @@ class Gui : public QWidget, private Ui::Gui
     Q_OBJECT
 
 public:
-    explicit Gui(QWidget parent = nullptr);
+    explicit Gui(QWidget *parent = nullptr);
 
 private slots:
     void on_speedSlider_valueChanged(int value);
@@ -20,9 +20,13 @@ private slots:
     void on_lauflichtButton_clicked();
     void toggle();
 private:
-    QTimer m_timer;
+    QTimer* m_timer;
     bool m_state = 0;
     bool m_blinkrun = 1;
+    bool is_second_run = 0;
+    bool is_first_run = 1;
     unsigned int count = 1;
     Gpio* m_leds;
 };
+
+#endif // GUI_H
